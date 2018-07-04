@@ -11,6 +11,7 @@ class App extends React.Component {
 				minimumBet: 0,
 				totalBet: 0,
 				maxAmountOfBets: 0,
+                abi :  [{"constant":false,"inputs":[],"name":"generateNumberWinner","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"numberOfBets","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"player","type":"address"}],"name":"checkPlayerExists","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"playerInfo","outputs":[{"name":"amountBet","type":"uint256"},{"name":"numberSelected","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"numberWinner","type":"uint256"}],"name":"distributePrizes","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"numberSelected","type":"uint256"}],"name":"bet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"minimumBet","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"maxAmountOfBets","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"numberGenerated","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"players","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalBet","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_minimumBet","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"}],
 			}
 		if(typeof web3 != 'undefined'){
 			console.log("Using web3 detected from external source like Metamask")
@@ -19,215 +20,7 @@ class App extends React.Component {
 			console.log("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
 			this.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
 		}
-		const MyContract = web3.eth.contract([[
-				{
-					"constant": false,
-					"inputs": [
-					{
-						"name": "numberSelected",
-						"type": "uint256"
-					}
-					],
-					"name": "bet",
-					"outputs": [],
-					"payable": true,
-					"stateMutability": "payable",
-					"type": "function"
-				},
-				{
-					"constant": false,
-					"inputs": [
-					{
-						"name": "numberWinner",
-						"type": "uint256"
-					}
-					],
-					"name": "distributePrizes",
-					"outputs": [],
-					"payable": false,
-					"stateMutability": "nonpayable",
-					"type": "function"
-				},
-				{
-					"constant": false,
-					"inputs": [],
-					"name": "generateNumberWinner",
-					"outputs": [],
-					"payable": false,
-					"stateMutability": "nonpayable",
-					"type": "function"
-				},
-				{
-					"constant": false,
-					"inputs": [],
-					"name": "kill",
-					"outputs": [],
-					"payable": false,
-					"stateMutability": "nonpayable",
-					"type": "function"
-				},
-				{
-					"payable": true,
-					"stateMutability": "payable",
-					"type": "fallback"
-				},
-				{
-					"inputs": [
-					{
-						"name": "_minimumBet",
-						"type": "uint256"
-					}
-					],
-					"payable": false,
-					"stateMutability": "nonpayable",
-					"type": "constructor"
-				},
-				{
-					"constant": true,
-					"inputs": [
-					{
-						"name": "player",
-						"type": "address"
-					}
-					],
-					"name": "checkPlayerExists",
-					"outputs": [
-					{
-						"name": "",
-						"type": "bool"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "maxAmountOfBets",
-					"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "minimumBet",
-					"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "numberGenerated",
-					"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "numberOfBets",
-					"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "owner",
-					"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [
-					{
-						"name": "",
-						"type": "address"
-					}
-					],
-					"name": "playerInfo",
-					"outputs": [
-					{
-						"name": "amountBet",
-						"type": "uint256"
-					},
-					{
-						"name": "numberSelected",
-						"type": "uint256"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-					],
-					"name": "players",
-					"outputs": [
-					{
-						"name": "",
-						"type": "address"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				},
-				{
-					"constant": true,
-					"inputs": [],
-					"name": "totalBet",
-					"outputs": [
-					{
-						"name": "",
-						"type": "uint256"
-					}
-					],
-					"payable": false,
-					"stateMutability": "view",
-					"type": "function"
-				}
-		]])
+		const MyContract = web3.eth.contract(this.state.abi)
 			this.state.ContractInstance = MyContract.at("0x5de12ada005d072301c214e76bdff32645ce8fdd")
 	}
 	componentDidMount(){
@@ -342,6 +135,7 @@ class App extends React.Component {
 					)
 	}
 }
+console.log("rendering");
 ReactDOM.render(
 		<App />,
 		document.querySelector('#root')
