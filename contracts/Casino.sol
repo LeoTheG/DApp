@@ -18,7 +18,7 @@ contract Casino {
     mapping(address=>Player) public playerInfo;
 
     //function Casino(uint256 _minimumBet) public {
-    constructor(uint256 _minimumBet) public {
+    constructor (uint256 _minimumBet) public {
         owner = msg.sender;
         if(_minimumBet != 0) minimumBet = _minimumBet;
     }
